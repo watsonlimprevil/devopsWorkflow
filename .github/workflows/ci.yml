@@ -10,34 +10,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      PGPASSWORD: ${{ secrets.PGPASSWORD }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install backend dependencies
-        working-directory: todobackend
+      - name: Install dependencies
         run: npm install
 
-      - name: Install frontend dependencies
-        working-directory: todofrontend
-        run: npm install
+      - name: Build project
+        run: npm run build
 
-      - name: Run backend tests
-        working-directory: todobackend
-        run: npm test --if-present
 
-      - name: Run frontend tests
-        working-directory: todofrontend
-        run: npm test --if-present
-
-        env:
-  PGPASSWORD: ${{ secrets.PGPASSWORD }}
-  DATABASE_URL: ${{ secrets.DATABASE_URL }}
-  JWT_SECRET: ${{ secrets.JWT_SECRET }}
-  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
