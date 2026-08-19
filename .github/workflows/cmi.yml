@@ -1,0 +1,36 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install backend dependencies
+        working-directory: todobackend
+        run: npm install
+
+      - name: Install frontend dependencies
+        working-directory: todofrontend
+        run: npm install
+
+      - name: Run backend tests
+        working-directory: todobackend
+        run: npm test --if-present
+
+      - name: Run frontend tests
+        working-directory: todofrontend
+        run: npm test --if-present
