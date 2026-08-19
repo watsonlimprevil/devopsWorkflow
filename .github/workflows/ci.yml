@@ -34,3 +34,10 @@ jobs:
       - name: Run frontend tests
         working-directory: todofrontend
         run: npm test --if-present
+
+        env:
+  PGPASSWORD: ${{ secrets.PGPASSWORD }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  JWT_SECRET: ${{ secrets.JWT_SECRET }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
