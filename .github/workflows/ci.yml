@@ -34,7 +34,8 @@ jobs:
         run: |
           cd todofrontend
           npm run build
-                - name: Log in to Docker Hub
+
+      - name: Log in to Docker Hub
         run: |
           echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
@@ -55,7 +56,3 @@ jobs:
       - name: Push frontend image
         run: |
           docker push watsonlimprevil/todofrontend:latest
-
-
-
-
