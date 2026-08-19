@@ -20,11 +20,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install backend dependencies
+        run: |
+          cd todobackend
+          npm install
 
-      - name: Build project
-        run: npm run build
+      - name: Build backend
+        run: |
+          cd todobackend
+          npm run build
+
+      - name: Install frontend dependencies
+        run: |
+          cd todofrontend
+          npm install
+
+      - name: Build frontend
+        run: |
+          cd todofrontend
+          npm run build
 
 
 
