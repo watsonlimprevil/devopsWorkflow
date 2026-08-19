@@ -37,7 +37,7 @@ jobs:
 
       - name: Log in to Docker Hub
         run: |
-          echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
       - name: Build backend image
         run: |
@@ -56,3 +56,4 @@ jobs:
       - name: Push frontend image
         run: |
           docker push watsonlimprevil/todofrontend:latest
+
