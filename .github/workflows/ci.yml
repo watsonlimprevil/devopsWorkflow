@@ -25,11 +25,6 @@ jobs:
           cd todobackend
           npm install
 
-      - name: Build backend
-        run: |
-          cd todobackend
-          npm run build
-
       - name: Install frontend dependencies
         run: |
           cd todofrontend
